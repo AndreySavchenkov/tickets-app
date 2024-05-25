@@ -1,32 +1,35 @@
 "use client";
 
+import { Role } from "@prisma/client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-const MainNavLinks = () => {
+const MainNavLinks = ({ role }: { role?: Role }) => {
   const links = [
-    { label: "Dashboard", href: "/" },
-    { label: "Tickets", href: "/tickets" },
-    { label: "Users", href: "/users" },
+    { label: "Dashboard", href: "/", adminOnly: false },
+    { label: "Tickets", href: "/tickets", adminOnly: false },
+    { label: "Users", href: "/users", adminOnly: true },
   ];
 
   const currentPath = usePathname();
 
   return (
     <div className="flex items-center gap-2">
-      {links.map((link) => (
-        <Link
-          key={link.label}
-          href={link.href}
-          className={`navbar-link ${
-            currentPath === link.href &&
-            "cursor-default text-primary/70 hover:text-primary/60"
-          }`}
-        >
-          {link.label}
-        </Link>
-      ))}
+      {links
+        .filter((link) => !link.adminOnly || role === "ADMIN")
+        .map((link) => (
+          <Link
+            key={link.label}
+            href={link.href}
+            className={`navbar-link ${
+              currentPath === link.href &&
+              "cursor-default text-primary/70 hover:text-primary/60"
+            }`}
+          >
+            {link.label}
+          </Link>
+        ))}
     </div>
   );
 };
