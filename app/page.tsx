@@ -25,9 +25,12 @@ const Dashboard = async () => {
     },
   });
 
-  console.log(groupTickets);
-
-  console.log(tickets);
+  const data = groupTickets.map((item) => {
+    return {
+      name: item.status,
+      total: item._count.id,
+    };
+  });
 
   return (
     <div>
@@ -36,7 +39,7 @@ const Dashboard = async () => {
           <DashRecentTickets tickets={tickets} />
         </div>
         <div>
-          <DashChart />
+          <DashChart data={data} />
         </div>
       </div>
     </div>
