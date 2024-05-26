@@ -2,11 +2,11 @@
 Applications for creating tickets that can be assigned statuses and priorities. These tickets can be assigned to specific users. Tickets can be edited.
 
 ## Deploy on Vercel
-[tickets-app]([https://nextjs.org/docs](https://tickets-app-khaki.vercel.app/))
+[tickets-app](https://tickets-app-khaki.vercel.app/)
 
-### Credentials:
-Login: admin
-Password: 111111
+Credentials for logging in and testing the application on Vercel:
+- Login: **admin**
+- Password: **111111**
 
 ## Stack:
 - **NextJS 14**
